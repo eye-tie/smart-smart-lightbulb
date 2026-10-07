@@ -72,6 +72,7 @@ class LightCard extends StatefulWidget {
 
 class _LightCardState extends State<LightCard> {
   bool _isExpanded = false;
+  double _brightness = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -113,14 +114,37 @@ class _LightCardState extends State<LightCard> {
                   ),
                   onPressed: () {
                     setState(() {
-                      _isExpanded = true;
+                      if (_isExpanded) {
+                        _isExpanded = false;
+                      } else {
+                        _isExpanded = true;
+                      }
                     });
                   },
                 ),
               ),
             ],
           ),
-          if (_isExpanded) const Row(children: [Text("Test123")]),
+          if (_isExpanded)
+            const Row(
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "Brightness: ",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
         ],
       ),
     );
